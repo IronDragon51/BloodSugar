@@ -1,0 +1,41 @@
+﻿
+@{
+    using (Html.BeginForm("AddNewCarbMeasure", "MeasurePage", FormMethod.Post))
+    {
+
+        <div class="text-center" style="font-size: 150%">
+                    <h1 class="display-4">Add new Carb measurement</h1>
+
+                    <h2 class="lead">Please fill in the form below</h2>
+
+                    <form method="post" >
+
+
+                        <label for="userPhone">Phone</label>
+                        <input type="text" class="form-control" name="userPhone" id="userPhone" placeholder="Enter your phone number">
+
+                        <label for="carbs">Carbs g</label>
+                        <input type="number" class="form-control" name="carbs" id="carbs" placeholder="Enter your carbs level (gramm)">
+
+
+
+                         <label for="time">Time of day</label>
+                         <select class="form-control" name="timeOfDay" id="timeOfDay">
+                                <option value="beforeBreakfast">Before breakfast</option>
+                                <option value="afterBreakfast">After breakfast</option>
+                                <option value="beforeLunch">Before lunch</option>
+                                <option value="afterLunch">After lunch</option>
+                                <option value="beforeDinner">Before dinner</option>
+                                <option value="afterDinner">After dinner</option>
+                                <option value="night">Night</option>
+                         </select>
+
+
+
+                        <br>
+
+                        <button type="submit" class="button">Submit</button>
+                    </form>
+        </div>
+    }
+}

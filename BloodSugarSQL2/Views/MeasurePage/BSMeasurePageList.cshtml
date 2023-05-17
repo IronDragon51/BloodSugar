@@ -1,0 +1,243 @@
+﻿@model List<BloodSugarData>
+
+
+            @*modify and remove button for each row in table*@
+
+<html>
+    <table>
+        <td> Phone </td>
+        <td> Date </td>
+        <td> Time of day </td>
+        <td> Blood sugar (mg/dl)</td>
+        <td> Delete </td>
+        <td> Modify </td>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.userPhone </td>
+                <td>@item.measureDate </td>
+                <td>@item.timeOfDay </td>
+                <td>@item.mgBloodSugar </td>
+                <td>
+                        <form asp-action="Delete" asp-controller="MeasurePage" method="post">
+                                <input type="hidden" name="userPhone" value="@item.userPhone" />
+                            <input type="submit" value="Delete" />
+                        </form>
+                </td>
+                <td>
+                        <form asp-action="Modify" asp-controller="MeasurePage" method="post">
+                                <input type="hidden" name="userPhone" value="@item.userPhone" />
+                            <input type="submit" value="Modify" />
+                        </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="modal-footer">
+        <div class="text-center" style="font-size: 150%">
+
+            <a class="linkt" asp-area="" asp-controller="MeasurePage" asp-action="AddBSMeasure">Add New Blood Sugar Data</a>
+            <a class="linkt" asp-area="" asp-controller="DiagramPage" asp-action="BSDiagram">Blood Sugar Data Diagram</a>
+            
+
+        </div>
+    </div>  
+
+
+    
+@*  -      -           -           -            -   GOOGLE CHART PART    -      -           -           -            -          -            - *@
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart', 'bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+
+        var button = document.getElementById('change-chart');
+        var chartDiv = document.getElementById('chart_div');
+
+        var data = google.visualization.arrayToDataTable([
+
+        @Html.Raw($"['User Phone', 'Date', 'Time of Day', 'Blood Sugar (mg/dl)'],")
+        @foreach (var item in Model)
+        {
+            @Html.Raw($"['{@item.userPhone}', {@item.measureDate}, {@item.timeOfDay}, {@item.mgBloodSugar}],")
+        }
+        ]);
+
+
+        var materialOptions = {
+          width: 900,
+          chart: {
+            title: 'Nearby galaxies',
+            subtitle: 'distance on the left, brightness on the right'
+          },
+          series: {
+            0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
+            1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
+          },
+          axes: {
+            y: {
+              distance: {label: 'parsecs'}, // Left y-axis.
+              brightness: {side: 'right', label: 'apparent magnitude'} // Right y-axis.
+            }
+          }
+        };
+
+        
+
+        function drawMaterialChart() {
+          var materialChart = new google.charts.Bar(chartDiv);
+          materialChart.draw(data, google.charts.Bar.convertOptions(materialOptions));
+          button.innerText = 'Change to Classic';
+          button.onclick = drawClassicChart;
+        }
+
+        
+
+        drawMaterialChart();
+    };
+    </script>
+  </head>
+  <body>
+
+    <br><br>
+    <div id="chart_div" style="width: 800px; height: 500px;"></div>
+  </body>
+
+
+
+
+      <div>
+
+            <button type="button"  
+                style=" margin-left:45px;"   class="button" onclick=" window.location.href = '@Url.Action("AddMeasure", "MeasurePage")' ">Add measure
+            </button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+
+
+
+    <div>
+        <table>
+            <th>
+                <td>User Phone</td>
+                <td>Date</td> 
+                <td>Time of Day</td> 
+                <td>Blood Sugar (mg/dl)</td>
+            </th>
+        
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td></td>  
+                    <td>@item.userPhone </td><td>@item.measureDate </td>
+                    <td>@item.timeOfDay </td>
+                    <td>@item.mgBloodSugar </td>
+
+
+                </tr>
+            }
+        
+        
+        </table>
+
+    </div>
+
+
+
+
+
+        @*
+    ------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------
+        @
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['bar']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['User Phone', 'Date', 'Time of Day', 'Blood Sugar (mg/dl)'],
+              ['2014', 1000, 400, 200],
+              ['2015', 1170, 460, 250],
+              ['2016', 660, 1120, 300],
+              ['2017', 1030, 540, 350]
+            ]);
+
+            var options = {
+              chart: {
+                title: 'Company Performance',
+                subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+              }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+          }
+        </script>
+
+          <body>
+        <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+      </body>
+
+        @*
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+              google.charts.load('current', {'packages':['bar']});
+              google.charts.setOnLoadCallback(drawChart);
+
+              function drawChart() {
+
+                var data = google.visualization.arrayToDataTable([
+
+                    @Html.Raw($"['User Phone', 'Date', 'Time of Day', 'Blood Sugar (mg/dl)'],")
+                    @foreach (var item in Model)
+                    {
+                        @Html.Raw($"['{@item.userPhone}', {@item.measureDate}, {@item.timeOfDay}, {@item.mgBloodSugar}],")
+
+                    }
+                ]);
+
+                var options = {
+
+                    title: 'Blood Sugar'
+
+                };
+
+                var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+              }
+            </script>
+  
+          <body>
+            <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+          </body>
+        *@ 
+        
+
+ </html>

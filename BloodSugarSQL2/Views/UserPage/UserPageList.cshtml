@@ -1,0 +1,41 @@
+﻿
+@model List<UserInfo>
+
+<div>
+    <table>
+        <th>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Phone number</td>
+            <td>Date of birth</td>
+        </th>
+        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td></td>   
+                <td>@item.Name</td>
+                <td>@item.Address</td>
+                <td>@item.Phone</td>
+                <td>@item.BirthDay</td>
+            </tr>
+             
+            
+        }
+        
+    </table>
+
+</div>
+
+
+@*linkt link to Add user page*@
+<div style="padding-top: 30px">
+
+    <div class="text-center" style="font-size: 150%">
+
+        <a class="linkt" asp-area="" asp-controller="UserPage" asp-action="AddUser">Add New User</a>
+    </div>
+</div>
+
+
+

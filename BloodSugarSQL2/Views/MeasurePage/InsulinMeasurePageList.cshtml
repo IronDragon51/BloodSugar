@@ -1,0 +1,21 @@
+﻿@model List<InsulinData>    
+
+<table>
+@foreach (var item in Model)
+{
+    <tr>
+        <td></td>  
+        <td>@item.userPhone </td><td>@item.measureDate </td>
+        <td>@item.timeOfDay </td>
+        <td>@item.mgInsulin </td>
+    </tr>
+}
+</table>
+
+<div class="modal-footer">
+    <div class="text-center" style="font-size: 150%">
+        
+        <a class="linkt" asp-area="" asp-controller="MeasurePage" asp-action="AddInsulinMeasure">Add New Insulin Data</a>
+
+    </div>
+</div>
