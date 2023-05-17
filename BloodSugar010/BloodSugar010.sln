@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodSugar010", "BloodSugar010.csproj", "{0E69DDFF-BCB0-483A-8A41-2DCAB809578C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E69DDFF-BCB0-483A-8A41-2DCAB809578C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E69DDFF-BCB0-483A-8A41-2DCAB809578C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E69DDFF-BCB0-483A-8A41-2DCAB809578C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E69DDFF-BCB0-483A-8A41-2DCAB809578C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBA2CE4C-812F-48C2-9D14-6CE682711FD4}
+	EndGlobalSection
+EndGlobal
